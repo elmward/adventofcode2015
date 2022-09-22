@@ -1,7 +1,9 @@
+require 'set'
+
 def main
   current_location = [0,0]
-  locations = Hash.new(0)
-  locations[current_location] += 1
+  visited = Set.new
+  visited << current_location
 
   directions = File.read('input.txt')
   directions.chars.each do |dir|
@@ -15,9 +17,9 @@ def main
     when 'v'
       current_location[1] -= 1
     end
-    locations[current_location] += 1
+    visited << current_location
   end
-  puts locations.size
+  puts visited.size
 end
 
 if __FILE__ == $PROGRAM_NAME
